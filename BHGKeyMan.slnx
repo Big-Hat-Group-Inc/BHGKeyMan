@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="BHGKeyMan.App/BHGKeyMan.App.csproj" />
+  <Project Path="BHGKeyMan.Core.Tests/BHGKeyMan.Core.Tests.csproj" />
+  <Project Path="BHGKeyMan.Core/BHGKeyMan.Core.csproj" />
+</Solution>

@@ -1,0 +1,13 @@
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\bin\Debug\net10.0\BHGKeyMan.Core.deps.json
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\bin\Debug\net10.0\BHGKeyMan.Core.dll
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\bin\Debug\net10.0\BHGKeyMan.Core.pdb
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\obj\Debug\net10.0\BHGKeyMan.Core.csproj.AssemblyReference.cache
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\obj\Debug\net10.0\BHGKeyMan.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\obj\Debug\net10.0\BHGKeyMan.Core.AssemblyInfoInputs.cache
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\obj\Debug\net10.0\BHGKeyMan.Core.AssemblyInfo.cs
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\obj\Debug\net10.0\BHGKeyMan.Core.csproj.CoreCompileInputs.cache
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\obj\Debug\net10.0\BHGKeyMan.Core.sourcelink.json
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\obj\Debug\net10.0\BHGKeyMan.Core.dll
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\obj\Debug\net10.0\refint\BHGKeyMan.Core.dll
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\obj\Debug\net10.0\BHGKeyMan.Core.pdb
+C:\Temp\GitHub\BHGKeyMan\BHGKeyMan.Core\obj\Debug\net10.0\ref\BHGKeyMan.Core.dll

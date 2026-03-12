@@ -1,0 +1,174 @@
+<Window x:Class="BHGKeyMan.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="BHGKeyMan"
+        Height="820"
+        Width="1180"
+        MinHeight="680"
+        MinWidth="720">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="BHGKeyMan" FontSize="30" FontWeight="SemiBold" Foreground="{StaticResource StatusBrush}" />
+            <TextBlock Margin="0,8,0,0"
+                       Text="Secure Azure Key Vault workflows for retrieval, update, and approved process launch."
+                       Foreground="#FF5E564B"
+                       TextWrapping="Wrap" />
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                Margin="0,18,0,0"
+                Padding="14"
+                Background="{StaticResource WarningBrush}"
+                BorderBrush="#FFE6CF88"
+                BorderThickness="1"
+                CornerRadius="12"
+                Visibility="{Binding IsDemoMode, Converter={StaticResource BoolToVis}}">
+            <TextBlock Foreground="{StaticResource WarningTextBrush}"
+                       FontWeight="SemiBold"
+                       Text="Demo mode is active. Secrets are stored in memory only and are not persisted." />
+        </Border>
+
+        <ScrollViewer Grid.Row="2"
+                      Margin="0,20,0,0"
+                      VerticalScrollBarVisibility="Auto">
+            <WrapPanel ItemWidth="340">
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource SectionTitleTextStyle}" Text="Identity" />
+                        <TextBlock Style="{StaticResource SectionCaptionTextStyle}"
+                                   Text="Authenticate before running Azure Key Vault operations. Demo mode skips this step." />
+                        <Border Margin="0,14,0,0" Padding="12" Background="{StaticResource SurfaceAltBrush}" CornerRadius="10">
+                            <TextBlock Text="{Binding IdentityStatus}" TextWrapping="Wrap" />
+                        </Border>
+                        <Button Content="Sign In"
+                                Command="{Binding SignInCommand}"
+                                AutomationProperties.Name="Sign in to Azure Key Vault" />
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource SectionTitleTextStyle}" Text="Secret Catalog" />
+                        <TextBlock Style="{StaticResource SectionCaptionTextStyle}"
+                                   Text="Load the secrets you can access, then select one to retrieve or update." />
+                        <Button Content="Load Secrets"
+                                Command="{Binding LoadSecretsCommand}"
+                                AutomationProperties.Name="Load available secrets" />
+                        <ListBox ItemsSource="{Binding Secrets}"
+                                 SelectedItem="{Binding SelectedSecretName}"
+                                 Height="250"
+                                 AutomationProperties.Name="Available secrets list" />
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource SectionTitleTextStyle}" Text="Retrieve Secret" />
+                        <TextBlock Style="{StaticResource SectionCaptionTextStyle}"
+                                   Text="Secrets stay masked by default. Reveal and copy are explicit actions." />
+                        <TextBlock Margin="0,12,0,0" Text="Secret Name" />
+                        <TextBox Text="{Binding RetrieveSecretName, UpdateSourceTrigger=PropertyChanged}"
+                                 AutomationProperties.Name="Secret name for retrieval" />
+                        <Button Content="Get Secret"
+                                Command="{Binding GetSecretCommand}"
+                                AutomationProperties.Name="Retrieve selected secret" />
+
+                        <TextBlock Margin="0,16,0,0" Text="Value" />
+                        <Border Margin="0,8,0,0"
+                                Padding="12"
+                                Background="{StaticResource SurfaceAltBrush}"
+                                BorderBrush="{StaticResource BorderBrushSoft}"
+                                BorderThickness="1"
+                                CornerRadius="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding DisplayedSecretValue}"
+                                           TextWrapping="Wrap"
+                                           VerticalAlignment="Center"
+                                           AutomationProperties.Name="Retrieved secret display" />
+                                <Button Grid.Column="1"
+                                        Style="{StaticResource SecondaryButtonStyle}"
+                                        Margin="12,0,0,0"
+                                        Padding="12,6"
+                                        Content="Reveal"
+                                        Command="{Binding ToggleRevealCommand}"
+                                        AutomationProperties.Name="Reveal or hide secret value" />
+                            </Grid>
+                        </Border>
+
+                        <Button Content="Copy Value"
+                                Command="{Binding CopySecretCommand}"
+                                AutomationProperties.Name="Copy retrieved secret value" />
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource SectionTitleTextStyle}" Text="Set or Update Secret" />
+                        <TextBlock Style="{StaticResource SectionCaptionTextStyle}"
+                                   Text="New secret values use a password-style entry field and are cleared after a successful save." />
+                        <TextBlock Margin="0,12,0,0" Text="Secret Name" />
+                        <TextBox Text="{Binding SetSecretName, UpdateSourceTrigger=PropertyChanged}"
+                                 AutomationProperties.Name="Secret name for update" />
+                        <TextBlock Margin="0,12,0,0" Text="Secret Value" />
+                        <PasswordBox x:Name="SecretValuePasswordBox"
+                                     PasswordChanged="SecretValuePasswordBox_OnPasswordChanged"
+                                     AutomationProperties.Name="Secret value input" />
+                        <Button Content="Set Secret"
+                                Command="{Binding SetSecretCommand}"
+                                AutomationProperties.Name="Save secret value" />
+                    </StackPanel>
+                </Border>
+
+                <Border Style="{StaticResource CardBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource SectionTitleTextStyle}" Text="Approved Process Launch" />
+                        <TextBlock Style="{StaticResource SectionCaptionTextStyle}"
+                                   Text="{Binding LaunchPolicyStatus}" />
+                        <TextBlock Margin="0,12,0,0" Text="Executable Path" />
+                        <TextBox Text="{Binding LaunchExecutablePath, UpdateSourceTrigger=PropertyChanged}"
+                                 AutomationProperties.Name="Approved executable path" />
+                        <TextBlock Margin="0,12,0,0" Text="Arguments" />
+                        <TextBox Text="{Binding LaunchArguments, UpdateSourceTrigger=PropertyChanged}"
+                                 AutomationProperties.Name="Executable arguments" />
+                        <TextBlock Margin="0,12,0,0" Text="Environment Variable Name" />
+                        <TextBox Text="{Binding LaunchEnvVarName, UpdateSourceTrigger=PropertyChanged}"
+                                 AutomationProperties.Name="Approved environment variable name" />
+                        <Button Content="Launch Approved Tool"
+                                Command="{Binding LaunchProcessCommand}"
+                                AutomationProperties.Name="Launch approved tool with secret environment variable" />
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="3"
+                Margin="0,18,0,0"
+                Padding="14"
+                Background="{StaticResource AccentBrushMuted}"
+                BorderBrush="{StaticResource BorderBrushSoft}"
+                BorderThickness="1"
+                CornerRadius="12">
+            <StackPanel>
+                <TextBlock FontWeight="SemiBold" Foreground="{StaticResource StatusBrush}" Text="Status" />
+                <TextBlock Margin="0,8,0,0"
+                           Text="{Binding StatusMessage}"
+                           TextWrapping="Wrap"
+                           Foreground="{StaticResource StatusBrush}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
