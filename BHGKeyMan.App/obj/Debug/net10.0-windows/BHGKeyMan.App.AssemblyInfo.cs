@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BHGKeyMan.App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+013aa5cb69e6be194cbffe5689d946c075fc98af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5ee5b200eaffb9e3e7b6f82cece80d979c02560")]
 [assembly: System.Reflection.AssemblyProductAttribute("BHGKeyMan.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BHGKeyMan.App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
